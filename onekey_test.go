@@ -5,6 +5,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestSize(t *testing.T) {
+	chain := Keychain()
+	for i := 0; i<33; i++ {
+		chain.generate()
+	}
+	assert.Equal(t, chain.size(), 33, "KeyChain should have the right size")
+}
+
 func TestGenerate(t *testing.T) {
 	chain := Keychain()
 	_ = chain.generate()
