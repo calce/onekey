@@ -6,7 +6,7 @@ import (
 )
 
 func TestSize(t *testing.T) {
-	chain := Keychain()
+	chain := NewKeychain()
 	for i := 0; i<33; i++ {
 		chain.generate()
 	}
@@ -14,13 +14,13 @@ func TestSize(t *testing.T) {
 }
 
 func TestGenerate(t *testing.T) {
-	chain := Keychain()
+	chain := NewKeychain()
 	_ = chain.generate()
 	assert.Equal(t, chain.size(), 1, "KeyChain should properly generate keys")
 }
 
 func TestConsume(t *testing.T) {
-	chain := Keychain()
+	chain := NewKeychain()
 	key := chain.generate()
 	ok := chain.consume(key)
 	assert.Equal(t, ok, true, "KeyChain should be able to consume generated keys")

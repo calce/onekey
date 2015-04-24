@@ -8,28 +8,28 @@ import (
 
 var zero = time.Time{}
 
-type OneKey struct {
+type Keychain struct {
 	keys map[string]time.Time
 }
 
-func Keychain() OneKey {
-	return OneKey{
+func NewKeychain() Keychain {
+	return Keychain{
 		keys: make(map[string]time.Time),
 	}
 }
 
-func (k *OneKey) generate() string {
+func (k *Keychain) generate() string {
 	key := uuid.New()
 	k.keys[key] = time.Now()
 	return key
 }
 
-func (k *OneKey) consume(key string) bool {
+func (k *Keychain) consume(key string) bool {
 	t := k.keys[key]
 	delete(k.keys, key)
 	return (t != zero)
 }
 
-func (k *OneKey) size() int {
+func (k *Keychain) size() int {
 	return len(k.keys)
 }
