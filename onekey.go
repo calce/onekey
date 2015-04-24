@@ -26,6 +26,7 @@ func (k *OneKey) generate() string {
 
 func (k *OneKey) consume(key string) bool {
 	t := k.keys[key]
+	delete(k.keys, key)
 	return (t != zero)
 }
 
